@@ -1,0 +1,8 @@
+{
+  "name": "chrovia-tcp-fingerprint",
+  "private": true,
+  "scripts": {
+    "format": "gofmt -w .",
+    "build": "node scripts/build.cjs"
+  }
+}
