@@ -1,5 +1,12 @@
 {
   "name": "chrovia-tcp-fingerprint",
+  "description": "A Linux TCP SYN fingerprint diagnostic service by Chrovia.",
+  "homepage": "https://console.getchrovia.com",
+  "author": {
+    "name": "Chrovia Labs",
+    "url": "https://console.getchrovia.com"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "format": "gofmt -w .",

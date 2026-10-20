@@ -8,7 +8,8 @@ let temp;
 try {
   mkdirSync(dist, { recursive: true });
   temp = mkdtempSync(path.join(dist, '.build-'));
-  const files = ['tcp-fingerprint-linux-amd64', 'tcp-fingerprint-linux-arm64', 'install.sh'];
+  const docs = ['LICENSE', 'README.md', 'CONTRIBUTING.md', 'SECURITY.md'];
+  const files = ['tcp-fingerprint-linux-amd64', 'tcp-fingerprint-linux-arm64', 'install.sh', ...docs];
   for (const arch of ['amd64', 'arm64']) {
     const output = path.join(temp, `tcp-fingerprint-linux-${arch}`);
     const result = spawnSync('go', ['build', '-trimpath', '-ldflags=-s -w', '-o', output, '.'], {
@@ -21,6 +22,9 @@ try {
     }
   }
   copyFileSync(path.join(root, 'scripts', 'install.sh'), path.join(temp, 'install.sh'));
+  for (const file of docs) {
+    copyFileSync(path.join(root, file), path.join(temp, file));
+  }
   for (const file of files) {
     renameSync(path.join(temp, file), path.join(dist, file));
     console.log(path.join(dist, file));
